@@ -1,20 +1,12 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Build') {
+   stages {
+        stage('Upload to S3') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                script {
+                    sh 'aws s3 cp https://github.com/saqebgiram/Javaapplication s3://jenkins-test-public/'
+                }
             }
         }
     }
